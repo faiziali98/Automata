@@ -1,0 +1,1413 @@
+Created by PLY version 3.7 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    NEWLINE
+    TAB
+    SPACE
+
+Grammar
+
+Rule 0     S' -> exp
+Rule 1     exp -> stmnts exp
+Rule 2     exp -> <empty>
+Rule 3     stmnts -> stmnt stmnts
+Rule 4     stmnts -> <empty>
+Rule 5     stmnt -> IDENTIFIER EQUAL val
+Rule 6     stmnt -> PUTS val
+Rule 7     stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+Rule 8     vals -> arrvals
+Rule 9     val -> stmnt
+Rule 10    vals -> <empty>
+Rule 11    arrvals -> val COMMA arrvals
+Rule 12    arrvals -> val
+Rule 13    stmnt -> ARRAYEACH DO LOOPVAR stmnts END
+Rule 14    stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+Rule 15    stmnt -> RETURN val
+Rule 16    whens -> WHEN val stmnts whens
+Rule 17    whens -> <empty>
+Rule 18    stmnt -> DEF IDENTIFIER ( vals ) stmnts END
+Rule 19    stmnt -> IDENTIFIER ( vals )
+Rule 20    stmnt -> IDENTIFIER EQUAL INPUT
+Rule 21    stmnt -> CASE val whens ELSE stmnts END
+Rule 22    val -> NUMBER
+Rule 23    val -> STRING
+Rule 24    val -> IDENTIFIER
+Rule 25    val -> val OPERATOR val
+Rule 26    val -> val - val
+
+Terminals, with rules where they appear
+
+(                    : 18 19
+)                    : 18 19
+-                    : 26
+ARRAYEACH            : 13
+CASE                 : 21
+COMMA                : 11
+DEF                  : 18
+DO                   : 13
+DOTS                 : 14
+ELSE                 : 21
+END                  : 13 14 18 21
+EQUAL                : 5 7 20
+FOR                  : 14
+IDENTIFIER           : 5 7 14 18 19 20 24
+IN                   : 14
+INPUT                : 20
+LEFTBRACKET          : 7
+LOOPVAR              : 13
+NEWLINE              : 
+NUMBER               : 14 14 22
+OPERATOR             : 25
+PUTS                 : 6
+RETURN               : 15
+RIGHTBRACKET         : 7
+SPACE                : 
+STRING               : 23
+TAB                  : 
+WHEN                 : 16
+error                : 
+
+Nonterminals, with rules where they appear
+
+arrvals              : 8 11
+exp                  : 1 0
+stmnt                : 3 9
+stmnts               : 1 3 13 14 16 18 21
+val                  : 5 6 11 12 15 16 21 25 25 26 26
+vals                 : 7 18 19
+whens                : 16 21
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . exp
+    (1) exp -> . stmnts exp
+    (2) exp -> .
+    (3) stmnts -> . stmnt stmnts
+    (4) stmnts -> .
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+  ! reduce/reduce conflict for $end resolved using rule 2 (exp -> .)
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for PUTS resolved as shift
+  ! shift/reduce conflict for ARRAYEACH resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for RETURN resolved as shift
+  ! shift/reduce conflict for DEF resolved as shift
+  ! shift/reduce conflict for CASE resolved as shift
+    $end            reduce using rule 2 (exp -> .)
+    IDENTIFIER      shift and go to state 5
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+  ! IDENTIFIER      [ reduce using rule 4 (stmnts -> .) ]
+  ! PUTS            [ reduce using rule 4 (stmnts -> .) ]
+  ! ARRAYEACH       [ reduce using rule 4 (stmnts -> .) ]
+  ! FOR             [ reduce using rule 4 (stmnts -> .) ]
+  ! RETURN          [ reduce using rule 4 (stmnts -> .) ]
+  ! DEF             [ reduce using rule 4 (stmnts -> .) ]
+  ! CASE            [ reduce using rule 4 (stmnts -> .) ]
+  ! $end            [ reduce using rule 4 (stmnts -> .) ]
+
+    stmnt                          shift and go to state 1
+    exp                            shift and go to state 9
+    stmnts                         shift and go to state 10
+
+state 1
+
+    (3) stmnts -> stmnt . stmnts
+    (3) stmnts -> . stmnt stmnts
+    (4) stmnts -> .
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for PUTS resolved as shift
+  ! shift/reduce conflict for ARRAYEACH resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for RETURN resolved as shift
+  ! shift/reduce conflict for DEF resolved as shift
+  ! shift/reduce conflict for CASE resolved as shift
+    $end            reduce using rule 4 (stmnts -> .)
+    END             reduce using rule 4 (stmnts -> .)
+    WHEN            reduce using rule 4 (stmnts -> .)
+    ELSE            reduce using rule 4 (stmnts -> .)
+    IDENTIFIER      shift and go to state 5
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+  ! IDENTIFIER      [ reduce using rule 4 (stmnts -> .) ]
+  ! PUTS            [ reduce using rule 4 (stmnts -> .) ]
+  ! ARRAYEACH       [ reduce using rule 4 (stmnts -> .) ]
+  ! FOR             [ reduce using rule 4 (stmnts -> .) ]
+  ! RETURN          [ reduce using rule 4 (stmnts -> .) ]
+  ! DEF             [ reduce using rule 4 (stmnts -> .) ]
+  ! CASE            [ reduce using rule 4 (stmnts -> .) ]
+
+    stmnt                          shift and go to state 1
+    stmnts                         shift and go to state 11
+
+state 2
+
+    (15) stmnt -> RETURN . val
+    (9) val -> . stmnt
+    (22) val -> . NUMBER
+    (23) val -> . STRING
+    (24) val -> . IDENTIFIER
+    (25) val -> . val OPERATOR val
+    (26) val -> . val - val
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+    NUMBER          shift and go to state 13
+    STRING          shift and go to state 16
+    IDENTIFIER      shift and go to state 15
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+    stmnt                          shift and go to state 12
+    val                            shift and go to state 14
+
+state 3
+
+    (18) stmnt -> DEF . IDENTIFIER ( vals ) stmnts END
+
+    IDENTIFIER      shift and go to state 17
+
+
+state 4
+
+    (21) stmnt -> CASE . val whens ELSE stmnts END
+    (9) val -> . stmnt
+    (22) val -> . NUMBER
+    (23) val -> . STRING
+    (24) val -> . IDENTIFIER
+    (25) val -> . val OPERATOR val
+    (26) val -> . val - val
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+    NUMBER          shift and go to state 13
+    STRING          shift and go to state 16
+    IDENTIFIER      shift and go to state 15
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+    val                            shift and go to state 18
+    stmnt                          shift and go to state 12
+
+state 5
+
+    (5) stmnt -> IDENTIFIER . EQUAL val
+    (7) stmnt -> IDENTIFIER . EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (19) stmnt -> IDENTIFIER . ( vals )
+    (20) stmnt -> IDENTIFIER . EQUAL INPUT
+
+    EQUAL           shift and go to state 20
+    (               shift and go to state 19
+
+
+state 6
+
+    (14) stmnt -> FOR . IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+
+    IDENTIFIER      shift and go to state 21
+
+
+state 7
+
+    (6) stmnt -> PUTS . val
+    (9) val -> . stmnt
+    (22) val -> . NUMBER
+    (23) val -> . STRING
+    (24) val -> . IDENTIFIER
+    (25) val -> . val OPERATOR val
+    (26) val -> . val - val
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+    NUMBER          shift and go to state 13
+    STRING          shift and go to state 16
+    IDENTIFIER      shift and go to state 15
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+    stmnt                          shift and go to state 12
+    val                            shift and go to state 22
+
+state 8
+
+    (13) stmnt -> ARRAYEACH . DO LOOPVAR stmnts END
+
+    DO              shift and go to state 23
+
+
+state 9
+
+    (0) S' -> exp .
+
+
+
+state 10
+
+    (1) exp -> stmnts . exp
+    (1) exp -> . stmnts exp
+    (2) exp -> .
+    (3) stmnts -> . stmnt stmnts
+    (4) stmnts -> .
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+  ! reduce/reduce conflict for $end resolved using rule 2 (exp -> .)
+  ! shift/reduce conflict for IDENTIFIER resolved as shift
+  ! shift/reduce conflict for PUTS resolved as shift
+  ! shift/reduce conflict for ARRAYEACH resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for RETURN resolved as shift
+  ! shift/reduce conflict for DEF resolved as shift
+  ! shift/reduce conflict for CASE resolved as shift
+    $end            reduce using rule 2 (exp -> .)
+    IDENTIFIER      shift and go to state 5
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+  ! IDENTIFIER      [ reduce using rule 4 (stmnts -> .) ]
+  ! PUTS            [ reduce using rule 4 (stmnts -> .) ]
+  ! ARRAYEACH       [ reduce using rule 4 (stmnts -> .) ]
+  ! FOR             [ reduce using rule 4 (stmnts -> .) ]
+  ! RETURN          [ reduce using rule 4 (stmnts -> .) ]
+  ! DEF             [ reduce using rule 4 (stmnts -> .) ]
+  ! CASE            [ reduce using rule 4 (stmnts -> .) ]
+  ! $end            [ reduce using rule 4 (stmnts -> .) ]
+
+    stmnt                          shift and go to state 1
+    exp                            shift and go to state 24
+    stmnts                         shift and go to state 10
+
+state 11
+
+    (3) stmnts -> stmnt stmnts .
+
+    END             reduce using rule 3 (stmnts -> stmnt stmnts .)
+    IDENTIFIER      reduce using rule 3 (stmnts -> stmnt stmnts .)
+    PUTS            reduce using rule 3 (stmnts -> stmnt stmnts .)
+    ARRAYEACH       reduce using rule 3 (stmnts -> stmnt stmnts .)
+    FOR             reduce using rule 3 (stmnts -> stmnt stmnts .)
+    RETURN          reduce using rule 3 (stmnts -> stmnt stmnts .)
+    DEF             reduce using rule 3 (stmnts -> stmnt stmnts .)
+    CASE            reduce using rule 3 (stmnts -> stmnt stmnts .)
+    $end            reduce using rule 3 (stmnts -> stmnt stmnts .)
+    WHEN            reduce using rule 3 (stmnts -> stmnt stmnts .)
+    ELSE            reduce using rule 3 (stmnts -> stmnt stmnts .)
+
+
+state 12
+
+    (9) val -> stmnt .
+
+    COMMA           reduce using rule 9 (val -> stmnt .)
+    OPERATOR        reduce using rule 9 (val -> stmnt .)
+    -               reduce using rule 9 (val -> stmnt .)
+    RIGHTBRACKET    reduce using rule 9 (val -> stmnt .)
+    IDENTIFIER      reduce using rule 9 (val -> stmnt .)
+    PUTS            reduce using rule 9 (val -> stmnt .)
+    ARRAYEACH       reduce using rule 9 (val -> stmnt .)
+    FOR             reduce using rule 9 (val -> stmnt .)
+    RETURN          reduce using rule 9 (val -> stmnt .)
+    DEF             reduce using rule 9 (val -> stmnt .)
+    CASE            reduce using rule 9 (val -> stmnt .)
+    $end            reduce using rule 9 (val -> stmnt .)
+    END             reduce using rule 9 (val -> stmnt .)
+    WHEN            reduce using rule 9 (val -> stmnt .)
+    ELSE            reduce using rule 9 (val -> stmnt .)
+    )               reduce using rule 9 (val -> stmnt .)
+
+
+state 13
+
+    (22) val -> NUMBER .
+
+    COMMA           reduce using rule 22 (val -> NUMBER .)
+    OPERATOR        reduce using rule 22 (val -> NUMBER .)
+    -               reduce using rule 22 (val -> NUMBER .)
+    RIGHTBRACKET    reduce using rule 22 (val -> NUMBER .)
+    IDENTIFIER      reduce using rule 22 (val -> NUMBER .)
+    PUTS            reduce using rule 22 (val -> NUMBER .)
+    ARRAYEACH       reduce using rule 22 (val -> NUMBER .)
+    FOR             reduce using rule 22 (val -> NUMBER .)
+    RETURN          reduce using rule 22 (val -> NUMBER .)
+    DEF             reduce using rule 22 (val -> NUMBER .)
+    CASE            reduce using rule 22 (val -> NUMBER .)
+    $end            reduce using rule 22 (val -> NUMBER .)
+    END             reduce using rule 22 (val -> NUMBER .)
+    WHEN            reduce using rule 22 (val -> NUMBER .)
+    ELSE            reduce using rule 22 (val -> NUMBER .)
+    )               reduce using rule 22 (val -> NUMBER .)
+
+
+state 14
+
+    (15) stmnt -> RETURN val .
+    (25) val -> val . OPERATOR val
+    (26) val -> val . - val
+
+  ! shift/reduce conflict for OPERATOR resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+    IDENTIFIER      reduce using rule 15 (stmnt -> RETURN val .)
+    PUTS            reduce using rule 15 (stmnt -> RETURN val .)
+    ARRAYEACH       reduce using rule 15 (stmnt -> RETURN val .)
+    FOR             reduce using rule 15 (stmnt -> RETURN val .)
+    RETURN          reduce using rule 15 (stmnt -> RETURN val .)
+    DEF             reduce using rule 15 (stmnt -> RETURN val .)
+    CASE            reduce using rule 15 (stmnt -> RETURN val .)
+    END             reduce using rule 15 (stmnt -> RETURN val .)
+    $end            reduce using rule 15 (stmnt -> RETURN val .)
+    WHEN            reduce using rule 15 (stmnt -> RETURN val .)
+    ELSE            reduce using rule 15 (stmnt -> RETURN val .)
+    COMMA           reduce using rule 15 (stmnt -> RETURN val .)
+    )               reduce using rule 15 (stmnt -> RETURN val .)
+    RIGHTBRACKET    reduce using rule 15 (stmnt -> RETURN val .)
+    OPERATOR        shift and go to state 25
+    -               shift and go to state 26
+
+  ! OPERATOR        [ reduce using rule 15 (stmnt -> RETURN val .) ]
+  ! -               [ reduce using rule 15 (stmnt -> RETURN val .) ]
+
+
+state 15
+
+    (24) val -> IDENTIFIER .
+    (5) stmnt -> IDENTIFIER . EQUAL val
+    (7) stmnt -> IDENTIFIER . EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (19) stmnt -> IDENTIFIER . ( vals )
+    (20) stmnt -> IDENTIFIER . EQUAL INPUT
+
+    COMMA           reduce using rule 24 (val -> IDENTIFIER .)
+    OPERATOR        reduce using rule 24 (val -> IDENTIFIER .)
+    -               reduce using rule 24 (val -> IDENTIFIER .)
+    RIGHTBRACKET    reduce using rule 24 (val -> IDENTIFIER .)
+    IDENTIFIER      reduce using rule 24 (val -> IDENTIFIER .)
+    PUTS            reduce using rule 24 (val -> IDENTIFIER .)
+    ARRAYEACH       reduce using rule 24 (val -> IDENTIFIER .)
+    FOR             reduce using rule 24 (val -> IDENTIFIER .)
+    RETURN          reduce using rule 24 (val -> IDENTIFIER .)
+    DEF             reduce using rule 24 (val -> IDENTIFIER .)
+    CASE            reduce using rule 24 (val -> IDENTIFIER .)
+    $end            reduce using rule 24 (val -> IDENTIFIER .)
+    END             reduce using rule 24 (val -> IDENTIFIER .)
+    WHEN            reduce using rule 24 (val -> IDENTIFIER .)
+    ELSE            reduce using rule 24 (val -> IDENTIFIER .)
+    )               reduce using rule 24 (val -> IDENTIFIER .)
+    EQUAL           shift and go to state 20
+    (               shift and go to state 19
+
+
+state 16
+
+    (23) val -> STRING .
+
+    COMMA           reduce using rule 23 (val -> STRING .)
+    OPERATOR        reduce using rule 23 (val -> STRING .)
+    -               reduce using rule 23 (val -> STRING .)
+    RIGHTBRACKET    reduce using rule 23 (val -> STRING .)
+    IDENTIFIER      reduce using rule 23 (val -> STRING .)
+    PUTS            reduce using rule 23 (val -> STRING .)
+    ARRAYEACH       reduce using rule 23 (val -> STRING .)
+    FOR             reduce using rule 23 (val -> STRING .)
+    RETURN          reduce using rule 23 (val -> STRING .)
+    DEF             reduce using rule 23 (val -> STRING .)
+    CASE            reduce using rule 23 (val -> STRING .)
+    $end            reduce using rule 23 (val -> STRING .)
+    END             reduce using rule 23 (val -> STRING .)
+    WHEN            reduce using rule 23 (val -> STRING .)
+    ELSE            reduce using rule 23 (val -> STRING .)
+    )               reduce using rule 23 (val -> STRING .)
+
+
+state 17
+
+    (18) stmnt -> DEF IDENTIFIER . ( vals ) stmnts END
+
+    (               shift and go to state 27
+
+
+state 18
+
+    (21) stmnt -> CASE val . whens ELSE stmnts END
+    (25) val -> val . OPERATOR val
+    (26) val -> val . - val
+    (16) whens -> . WHEN val stmnts whens
+    (17) whens -> .
+
+    OPERATOR        shift and go to state 25
+    -               shift and go to state 26
+    WHEN            shift and go to state 28
+    ELSE            reduce using rule 17 (whens -> .)
+
+    whens                          shift and go to state 29
+
+state 19
+
+    (19) stmnt -> IDENTIFIER ( . vals )
+    (8) vals -> . arrvals
+    (10) vals -> .
+    (11) arrvals -> . val COMMA arrvals
+    (12) arrvals -> . val
+    (9) val -> . stmnt
+    (22) val -> . NUMBER
+    (23) val -> . STRING
+    (24) val -> . IDENTIFIER
+    (25) val -> . val OPERATOR val
+    (26) val -> . val - val
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+    )               reduce using rule 10 (vals -> .)
+    NUMBER          shift and go to state 13
+    STRING          shift and go to state 16
+    IDENTIFIER      shift and go to state 15
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+    stmnt                          shift and go to state 12
+    val                            shift and go to state 31
+    arrvals                        shift and go to state 32
+    vals                           shift and go to state 30
+
+state 20
+
+    (5) stmnt -> IDENTIFIER EQUAL . val
+    (7) stmnt -> IDENTIFIER EQUAL . LEFTBRACKET vals RIGHTBRACKET
+    (20) stmnt -> IDENTIFIER EQUAL . INPUT
+    (9) val -> . stmnt
+    (22) val -> . NUMBER
+    (23) val -> . STRING
+    (24) val -> . IDENTIFIER
+    (25) val -> . val OPERATOR val
+    (26) val -> . val - val
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+    LEFTBRACKET     shift and go to state 34
+    INPUT           shift and go to state 35
+    NUMBER          shift and go to state 13
+    STRING          shift and go to state 16
+    IDENTIFIER      shift and go to state 15
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+    stmnt                          shift and go to state 12
+    val                            shift and go to state 33
+
+state 21
+
+    (14) stmnt -> FOR IDENTIFIER . IN NUMBER DOTS NUMBER stmnts END
+
+    IN              shift and go to state 36
+
+
+state 22
+
+    (6) stmnt -> PUTS val .
+    (25) val -> val . OPERATOR val
+    (26) val -> val . - val
+
+  ! shift/reduce conflict for OPERATOR resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+    IDENTIFIER      reduce using rule 6 (stmnt -> PUTS val .)
+    PUTS            reduce using rule 6 (stmnt -> PUTS val .)
+    ARRAYEACH       reduce using rule 6 (stmnt -> PUTS val .)
+    FOR             reduce using rule 6 (stmnt -> PUTS val .)
+    RETURN          reduce using rule 6 (stmnt -> PUTS val .)
+    DEF             reduce using rule 6 (stmnt -> PUTS val .)
+    CASE            reduce using rule 6 (stmnt -> PUTS val .)
+    END             reduce using rule 6 (stmnt -> PUTS val .)
+    $end            reduce using rule 6 (stmnt -> PUTS val .)
+    WHEN            reduce using rule 6 (stmnt -> PUTS val .)
+    ELSE            reduce using rule 6 (stmnt -> PUTS val .)
+    COMMA           reduce using rule 6 (stmnt -> PUTS val .)
+    )               reduce using rule 6 (stmnt -> PUTS val .)
+    RIGHTBRACKET    reduce using rule 6 (stmnt -> PUTS val .)
+    OPERATOR        shift and go to state 25
+    -               shift and go to state 26
+
+  ! OPERATOR        [ reduce using rule 6 (stmnt -> PUTS val .) ]
+  ! -               [ reduce using rule 6 (stmnt -> PUTS val .) ]
+
+
+state 23
+
+    (13) stmnt -> ARRAYEACH DO . LOOPVAR stmnts END
+
+    LOOPVAR         shift and go to state 37
+
+
+state 24
+
+    (1) exp -> stmnts exp .
+
+    $end            reduce using rule 1 (exp -> stmnts exp .)
+
+
+state 25
+
+    (25) val -> val OPERATOR . val
+    (9) val -> . stmnt
+    (22) val -> . NUMBER
+    (23) val -> . STRING
+    (24) val -> . IDENTIFIER
+    (25) val -> . val OPERATOR val
+    (26) val -> . val - val
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+    NUMBER          shift and go to state 13
+    STRING          shift and go to state 16
+    IDENTIFIER      shift and go to state 15
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+    stmnt                          shift and go to state 12
+    val                            shift and go to state 38
+
+state 26
+
+    (26) val -> val - . val
+    (9) val -> . stmnt
+    (22) val -> . NUMBER
+    (23) val -> . STRING
+    (24) val -> . IDENTIFIER
+    (25) val -> . val OPERATOR val
+    (26) val -> . val - val
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+    NUMBER          shift and go to state 13
+    STRING          shift and go to state 16
+    IDENTIFIER      shift and go to state 15
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+    stmnt                          shift and go to state 12
+    val                            shift and go to state 39
+
+state 27
+
+    (18) stmnt -> DEF IDENTIFIER ( . vals ) stmnts END
+    (8) vals -> . arrvals
+    (10) vals -> .
+    (11) arrvals -> . val COMMA arrvals
+    (12) arrvals -> . val
+    (9) val -> . stmnt
+    (22) val -> . NUMBER
+    (23) val -> . STRING
+    (24) val -> . IDENTIFIER
+    (25) val -> . val OPERATOR val
+    (26) val -> . val - val
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+    )               reduce using rule 10 (vals -> .)
+    NUMBER          shift and go to state 13
+    STRING          shift and go to state 16
+    IDENTIFIER      shift and go to state 15
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+    stmnt                          shift and go to state 12
+    val                            shift and go to state 31
+    arrvals                        shift and go to state 32
+    vals                           shift and go to state 40
+
+state 28
+
+    (16) whens -> WHEN . val stmnts whens
+    (9) val -> . stmnt
+    (22) val -> . NUMBER
+    (23) val -> . STRING
+    (24) val -> . IDENTIFIER
+    (25) val -> . val OPERATOR val
+    (26) val -> . val - val
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+    NUMBER          shift and go to state 13
+    STRING          shift and go to state 16
+    IDENTIFIER      shift and go to state 15
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+    val                            shift and go to state 41
+    stmnt                          shift and go to state 12
+
+state 29
+
+    (21) stmnt -> CASE val whens . ELSE stmnts END
+
+    ELSE            shift and go to state 42
+
+
+state 30
+
+    (19) stmnt -> IDENTIFIER ( vals . )
+
+    )               shift and go to state 43
+
+
+state 31
+
+    (11) arrvals -> val . COMMA arrvals
+    (12) arrvals -> val .
+    (25) val -> val . OPERATOR val
+    (26) val -> val . - val
+
+    COMMA           shift and go to state 44
+    RIGHTBRACKET    reduce using rule 12 (arrvals -> val .)
+    )               reduce using rule 12 (arrvals -> val .)
+    OPERATOR        shift and go to state 25
+    -               shift and go to state 26
+
+
+state 32
+
+    (8) vals -> arrvals .
+
+    )               reduce using rule 8 (vals -> arrvals .)
+    RIGHTBRACKET    reduce using rule 8 (vals -> arrvals .)
+
+
+state 33
+
+    (5) stmnt -> IDENTIFIER EQUAL val .
+    (25) val -> val . OPERATOR val
+    (26) val -> val . - val
+
+  ! shift/reduce conflict for OPERATOR resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+    IDENTIFIER      reduce using rule 5 (stmnt -> IDENTIFIER EQUAL val .)
+    PUTS            reduce using rule 5 (stmnt -> IDENTIFIER EQUAL val .)
+    ARRAYEACH       reduce using rule 5 (stmnt -> IDENTIFIER EQUAL val .)
+    FOR             reduce using rule 5 (stmnt -> IDENTIFIER EQUAL val .)
+    RETURN          reduce using rule 5 (stmnt -> IDENTIFIER EQUAL val .)
+    DEF             reduce using rule 5 (stmnt -> IDENTIFIER EQUAL val .)
+    CASE            reduce using rule 5 (stmnt -> IDENTIFIER EQUAL val .)
+    END             reduce using rule 5 (stmnt -> IDENTIFIER EQUAL val .)
+    $end            reduce using rule 5 (stmnt -> IDENTIFIER EQUAL val .)
+    WHEN            reduce using rule 5 (stmnt -> IDENTIFIER EQUAL val .)
+    ELSE            reduce using rule 5 (stmnt -> IDENTIFIER EQUAL val .)
+    COMMA           reduce using rule 5 (stmnt -> IDENTIFIER EQUAL val .)
+    )               reduce using rule 5 (stmnt -> IDENTIFIER EQUAL val .)
+    RIGHTBRACKET    reduce using rule 5 (stmnt -> IDENTIFIER EQUAL val .)
+    OPERATOR        shift and go to state 25
+    -               shift and go to state 26
+
+  ! OPERATOR        [ reduce using rule 5 (stmnt -> IDENTIFIER EQUAL val .) ]
+  ! -               [ reduce using rule 5 (stmnt -> IDENTIFIER EQUAL val .) ]
+
+
+state 34
+
+    (7) stmnt -> IDENTIFIER EQUAL LEFTBRACKET . vals RIGHTBRACKET
+    (8) vals -> . arrvals
+    (10) vals -> .
+    (11) arrvals -> . val COMMA arrvals
+    (12) arrvals -> . val
+    (9) val -> . stmnt
+    (22) val -> . NUMBER
+    (23) val -> . STRING
+    (24) val -> . IDENTIFIER
+    (25) val -> . val OPERATOR val
+    (26) val -> . val - val
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+    RIGHTBRACKET    reduce using rule 10 (vals -> .)
+    NUMBER          shift and go to state 13
+    STRING          shift and go to state 16
+    IDENTIFIER      shift and go to state 15
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+    stmnt                          shift and go to state 12
+    val                            shift and go to state 31
+    arrvals                        shift and go to state 32
+    vals                           shift and go to state 45
+
+state 35
+
+    (20) stmnt -> IDENTIFIER EQUAL INPUT .
+
+    IDENTIFIER      reduce using rule 20 (stmnt -> IDENTIFIER EQUAL INPUT .)
+    PUTS            reduce using rule 20 (stmnt -> IDENTIFIER EQUAL INPUT .)
+    ARRAYEACH       reduce using rule 20 (stmnt -> IDENTIFIER EQUAL INPUT .)
+    FOR             reduce using rule 20 (stmnt -> IDENTIFIER EQUAL INPUT .)
+    RETURN          reduce using rule 20 (stmnt -> IDENTIFIER EQUAL INPUT .)
+    DEF             reduce using rule 20 (stmnt -> IDENTIFIER EQUAL INPUT .)
+    CASE            reduce using rule 20 (stmnt -> IDENTIFIER EQUAL INPUT .)
+    END             reduce using rule 20 (stmnt -> IDENTIFIER EQUAL INPUT .)
+    OPERATOR        reduce using rule 20 (stmnt -> IDENTIFIER EQUAL INPUT .)
+    -               reduce using rule 20 (stmnt -> IDENTIFIER EQUAL INPUT .)
+    $end            reduce using rule 20 (stmnt -> IDENTIFIER EQUAL INPUT .)
+    WHEN            reduce using rule 20 (stmnt -> IDENTIFIER EQUAL INPUT .)
+    ELSE            reduce using rule 20 (stmnt -> IDENTIFIER EQUAL INPUT .)
+    COMMA           reduce using rule 20 (stmnt -> IDENTIFIER EQUAL INPUT .)
+    )               reduce using rule 20 (stmnt -> IDENTIFIER EQUAL INPUT .)
+    RIGHTBRACKET    reduce using rule 20 (stmnt -> IDENTIFIER EQUAL INPUT .)
+
+
+state 36
+
+    (14) stmnt -> FOR IDENTIFIER IN . NUMBER DOTS NUMBER stmnts END
+
+    NUMBER          shift and go to state 46
+
+
+state 37
+
+    (13) stmnt -> ARRAYEACH DO LOOPVAR . stmnts END
+    (3) stmnts -> . stmnt stmnts
+    (4) stmnts -> .
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+    END             reduce using rule 4 (stmnts -> .)
+    IDENTIFIER      shift and go to state 5
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+    stmnts                         shift and go to state 47
+    stmnt                          shift and go to state 1
+
+state 38
+
+    (25) val -> val OPERATOR val .
+    (25) val -> val . OPERATOR val
+    (26) val -> val . - val
+
+  ! shift/reduce conflict for OPERATOR resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+    COMMA           reduce using rule 25 (val -> val OPERATOR val .)
+    RIGHTBRACKET    reduce using rule 25 (val -> val OPERATOR val .)
+    IDENTIFIER      reduce using rule 25 (val -> val OPERATOR val .)
+    PUTS            reduce using rule 25 (val -> val OPERATOR val .)
+    ARRAYEACH       reduce using rule 25 (val -> val OPERATOR val .)
+    FOR             reduce using rule 25 (val -> val OPERATOR val .)
+    RETURN          reduce using rule 25 (val -> val OPERATOR val .)
+    DEF             reduce using rule 25 (val -> val OPERATOR val .)
+    CASE            reduce using rule 25 (val -> val OPERATOR val .)
+    $end            reduce using rule 25 (val -> val OPERATOR val .)
+    END             reduce using rule 25 (val -> val OPERATOR val .)
+    WHEN            reduce using rule 25 (val -> val OPERATOR val .)
+    ELSE            reduce using rule 25 (val -> val OPERATOR val .)
+    )               reduce using rule 25 (val -> val OPERATOR val .)
+    OPERATOR        shift and go to state 25
+    -               shift and go to state 26
+
+  ! OPERATOR        [ reduce using rule 25 (val -> val OPERATOR val .) ]
+  ! -               [ reduce using rule 25 (val -> val OPERATOR val .) ]
+
+
+state 39
+
+    (26) val -> val - val .
+    (25) val -> val . OPERATOR val
+    (26) val -> val . - val
+
+  ! shift/reduce conflict for OPERATOR resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+    COMMA           reduce using rule 26 (val -> val - val .)
+    RIGHTBRACKET    reduce using rule 26 (val -> val - val .)
+    IDENTIFIER      reduce using rule 26 (val -> val - val .)
+    PUTS            reduce using rule 26 (val -> val - val .)
+    ARRAYEACH       reduce using rule 26 (val -> val - val .)
+    FOR             reduce using rule 26 (val -> val - val .)
+    RETURN          reduce using rule 26 (val -> val - val .)
+    DEF             reduce using rule 26 (val -> val - val .)
+    CASE            reduce using rule 26 (val -> val - val .)
+    $end            reduce using rule 26 (val -> val - val .)
+    END             reduce using rule 26 (val -> val - val .)
+    WHEN            reduce using rule 26 (val -> val - val .)
+    ELSE            reduce using rule 26 (val -> val - val .)
+    )               reduce using rule 26 (val -> val - val .)
+    OPERATOR        shift and go to state 25
+    -               shift and go to state 26
+
+  ! OPERATOR        [ reduce using rule 26 (val -> val - val .) ]
+  ! -               [ reduce using rule 26 (val -> val - val .) ]
+
+
+state 40
+
+    (18) stmnt -> DEF IDENTIFIER ( vals . ) stmnts END
+
+    )               shift and go to state 48
+
+
+state 41
+
+    (16) whens -> WHEN val . stmnts whens
+    (25) val -> val . OPERATOR val
+    (26) val -> val . - val
+    (3) stmnts -> . stmnt stmnts
+    (4) stmnts -> .
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+    OPERATOR        shift and go to state 25
+    -               shift and go to state 26
+    WHEN            reduce using rule 4 (stmnts -> .)
+    ELSE            reduce using rule 4 (stmnts -> .)
+    IDENTIFIER      shift and go to state 5
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+    stmnts                         shift and go to state 49
+    stmnt                          shift and go to state 1
+
+state 42
+
+    (21) stmnt -> CASE val whens ELSE . stmnts END
+    (3) stmnts -> . stmnt stmnts
+    (4) stmnts -> .
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+    END             reduce using rule 4 (stmnts -> .)
+    IDENTIFIER      shift and go to state 5
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+    stmnts                         shift and go to state 50
+    stmnt                          shift and go to state 1
+
+state 43
+
+    (19) stmnt -> IDENTIFIER ( vals ) .
+
+    IDENTIFIER      reduce using rule 19 (stmnt -> IDENTIFIER ( vals ) .)
+    PUTS            reduce using rule 19 (stmnt -> IDENTIFIER ( vals ) .)
+    ARRAYEACH       reduce using rule 19 (stmnt -> IDENTIFIER ( vals ) .)
+    FOR             reduce using rule 19 (stmnt -> IDENTIFIER ( vals ) .)
+    RETURN          reduce using rule 19 (stmnt -> IDENTIFIER ( vals ) .)
+    DEF             reduce using rule 19 (stmnt -> IDENTIFIER ( vals ) .)
+    CASE            reduce using rule 19 (stmnt -> IDENTIFIER ( vals ) .)
+    END             reduce using rule 19 (stmnt -> IDENTIFIER ( vals ) .)
+    OPERATOR        reduce using rule 19 (stmnt -> IDENTIFIER ( vals ) .)
+    -               reduce using rule 19 (stmnt -> IDENTIFIER ( vals ) .)
+    $end            reduce using rule 19 (stmnt -> IDENTIFIER ( vals ) .)
+    WHEN            reduce using rule 19 (stmnt -> IDENTIFIER ( vals ) .)
+    ELSE            reduce using rule 19 (stmnt -> IDENTIFIER ( vals ) .)
+    COMMA           reduce using rule 19 (stmnt -> IDENTIFIER ( vals ) .)
+    )               reduce using rule 19 (stmnt -> IDENTIFIER ( vals ) .)
+    RIGHTBRACKET    reduce using rule 19 (stmnt -> IDENTIFIER ( vals ) .)
+
+
+state 44
+
+    (11) arrvals -> val COMMA . arrvals
+    (11) arrvals -> . val COMMA arrvals
+    (12) arrvals -> . val
+    (9) val -> . stmnt
+    (22) val -> . NUMBER
+    (23) val -> . STRING
+    (24) val -> . IDENTIFIER
+    (25) val -> . val OPERATOR val
+    (26) val -> . val - val
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+    NUMBER          shift and go to state 13
+    STRING          shift and go to state 16
+    IDENTIFIER      shift and go to state 15
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+    stmnt                          shift and go to state 12
+    val                            shift and go to state 31
+    arrvals                        shift and go to state 51
+
+state 45
+
+    (7) stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals . RIGHTBRACKET
+
+    RIGHTBRACKET    shift and go to state 52
+
+
+state 46
+
+    (14) stmnt -> FOR IDENTIFIER IN NUMBER . DOTS NUMBER stmnts END
+
+    DOTS            shift and go to state 53
+
+
+state 47
+
+    (13) stmnt -> ARRAYEACH DO LOOPVAR stmnts . END
+
+    END             shift and go to state 54
+
+
+state 48
+
+    (18) stmnt -> DEF IDENTIFIER ( vals ) . stmnts END
+    (3) stmnts -> . stmnt stmnts
+    (4) stmnts -> .
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+    END             reduce using rule 4 (stmnts -> .)
+    IDENTIFIER      shift and go to state 5
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+    stmnts                         shift and go to state 55
+    stmnt                          shift and go to state 1
+
+state 49
+
+    (16) whens -> WHEN val stmnts . whens
+    (16) whens -> . WHEN val stmnts whens
+    (17) whens -> .
+
+    WHEN            shift and go to state 28
+    ELSE            reduce using rule 17 (whens -> .)
+
+    whens                          shift and go to state 56
+
+state 50
+
+    (21) stmnt -> CASE val whens ELSE stmnts . END
+
+    END             shift and go to state 57
+
+
+state 51
+
+    (11) arrvals -> val COMMA arrvals .
+
+    RIGHTBRACKET    reduce using rule 11 (arrvals -> val COMMA arrvals .)
+    )               reduce using rule 11 (arrvals -> val COMMA arrvals .)
+
+
+state 52
+
+    (7) stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET .
+
+    IDENTIFIER      reduce using rule 7 (stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET .)
+    PUTS            reduce using rule 7 (stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET .)
+    ARRAYEACH       reduce using rule 7 (stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET .)
+    FOR             reduce using rule 7 (stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET .)
+    RETURN          reduce using rule 7 (stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET .)
+    DEF             reduce using rule 7 (stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET .)
+    CASE            reduce using rule 7 (stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET .)
+    END             reduce using rule 7 (stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET .)
+    OPERATOR        reduce using rule 7 (stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET .)
+    -               reduce using rule 7 (stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET .)
+    $end            reduce using rule 7 (stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET .)
+    WHEN            reduce using rule 7 (stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET .)
+    ELSE            reduce using rule 7 (stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET .)
+    COMMA           reduce using rule 7 (stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET .)
+    )               reduce using rule 7 (stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET .)
+    RIGHTBRACKET    reduce using rule 7 (stmnt -> IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET .)
+
+
+state 53
+
+    (14) stmnt -> FOR IDENTIFIER IN NUMBER DOTS . NUMBER stmnts END
+
+    NUMBER          shift and go to state 58
+
+
+state 54
+
+    (13) stmnt -> ARRAYEACH DO LOOPVAR stmnts END .
+
+    IDENTIFIER      reduce using rule 13 (stmnt -> ARRAYEACH DO LOOPVAR stmnts END .)
+    PUTS            reduce using rule 13 (stmnt -> ARRAYEACH DO LOOPVAR stmnts END .)
+    ARRAYEACH       reduce using rule 13 (stmnt -> ARRAYEACH DO LOOPVAR stmnts END .)
+    FOR             reduce using rule 13 (stmnt -> ARRAYEACH DO LOOPVAR stmnts END .)
+    RETURN          reduce using rule 13 (stmnt -> ARRAYEACH DO LOOPVAR stmnts END .)
+    DEF             reduce using rule 13 (stmnt -> ARRAYEACH DO LOOPVAR stmnts END .)
+    CASE            reduce using rule 13 (stmnt -> ARRAYEACH DO LOOPVAR stmnts END .)
+    END             reduce using rule 13 (stmnt -> ARRAYEACH DO LOOPVAR stmnts END .)
+    OPERATOR        reduce using rule 13 (stmnt -> ARRAYEACH DO LOOPVAR stmnts END .)
+    -               reduce using rule 13 (stmnt -> ARRAYEACH DO LOOPVAR stmnts END .)
+    $end            reduce using rule 13 (stmnt -> ARRAYEACH DO LOOPVAR stmnts END .)
+    WHEN            reduce using rule 13 (stmnt -> ARRAYEACH DO LOOPVAR stmnts END .)
+    ELSE            reduce using rule 13 (stmnt -> ARRAYEACH DO LOOPVAR stmnts END .)
+    COMMA           reduce using rule 13 (stmnt -> ARRAYEACH DO LOOPVAR stmnts END .)
+    )               reduce using rule 13 (stmnt -> ARRAYEACH DO LOOPVAR stmnts END .)
+    RIGHTBRACKET    reduce using rule 13 (stmnt -> ARRAYEACH DO LOOPVAR stmnts END .)
+
+
+state 55
+
+    (18) stmnt -> DEF IDENTIFIER ( vals ) stmnts . END
+
+    END             shift and go to state 59
+
+
+state 56
+
+    (16) whens -> WHEN val stmnts whens .
+
+    ELSE            reduce using rule 16 (whens -> WHEN val stmnts whens .)
+
+
+state 57
+
+    (21) stmnt -> CASE val whens ELSE stmnts END .
+
+    IDENTIFIER      reduce using rule 21 (stmnt -> CASE val whens ELSE stmnts END .)
+    PUTS            reduce using rule 21 (stmnt -> CASE val whens ELSE stmnts END .)
+    ARRAYEACH       reduce using rule 21 (stmnt -> CASE val whens ELSE stmnts END .)
+    FOR             reduce using rule 21 (stmnt -> CASE val whens ELSE stmnts END .)
+    RETURN          reduce using rule 21 (stmnt -> CASE val whens ELSE stmnts END .)
+    DEF             reduce using rule 21 (stmnt -> CASE val whens ELSE stmnts END .)
+    CASE            reduce using rule 21 (stmnt -> CASE val whens ELSE stmnts END .)
+    END             reduce using rule 21 (stmnt -> CASE val whens ELSE stmnts END .)
+    OPERATOR        reduce using rule 21 (stmnt -> CASE val whens ELSE stmnts END .)
+    -               reduce using rule 21 (stmnt -> CASE val whens ELSE stmnts END .)
+    $end            reduce using rule 21 (stmnt -> CASE val whens ELSE stmnts END .)
+    WHEN            reduce using rule 21 (stmnt -> CASE val whens ELSE stmnts END .)
+    ELSE            reduce using rule 21 (stmnt -> CASE val whens ELSE stmnts END .)
+    COMMA           reduce using rule 21 (stmnt -> CASE val whens ELSE stmnts END .)
+    )               reduce using rule 21 (stmnt -> CASE val whens ELSE stmnts END .)
+    RIGHTBRACKET    reduce using rule 21 (stmnt -> CASE val whens ELSE stmnts END .)
+
+
+state 58
+
+    (14) stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER . stmnts END
+    (3) stmnts -> . stmnt stmnts
+    (4) stmnts -> .
+    (5) stmnt -> . IDENTIFIER EQUAL val
+    (6) stmnt -> . PUTS val
+    (7) stmnt -> . IDENTIFIER EQUAL LEFTBRACKET vals RIGHTBRACKET
+    (13) stmnt -> . ARRAYEACH DO LOOPVAR stmnts END
+    (14) stmnt -> . FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END
+    (15) stmnt -> . RETURN val
+    (18) stmnt -> . DEF IDENTIFIER ( vals ) stmnts END
+    (19) stmnt -> . IDENTIFIER ( vals )
+    (20) stmnt -> . IDENTIFIER EQUAL INPUT
+    (21) stmnt -> . CASE val whens ELSE stmnts END
+
+    END             reduce using rule 4 (stmnts -> .)
+    IDENTIFIER      shift and go to state 5
+    PUTS            shift and go to state 7
+    ARRAYEACH       shift and go to state 8
+    FOR             shift and go to state 6
+    RETURN          shift and go to state 2
+    DEF             shift and go to state 3
+    CASE            shift and go to state 4
+
+    stmnts                         shift and go to state 60
+    stmnt                          shift and go to state 1
+
+state 59
+
+    (18) stmnt -> DEF IDENTIFIER ( vals ) stmnts END .
+
+    IDENTIFIER      reduce using rule 18 (stmnt -> DEF IDENTIFIER ( vals ) stmnts END .)
+    PUTS            reduce using rule 18 (stmnt -> DEF IDENTIFIER ( vals ) stmnts END .)
+    ARRAYEACH       reduce using rule 18 (stmnt -> DEF IDENTIFIER ( vals ) stmnts END .)
+    FOR             reduce using rule 18 (stmnt -> DEF IDENTIFIER ( vals ) stmnts END .)
+    RETURN          reduce using rule 18 (stmnt -> DEF IDENTIFIER ( vals ) stmnts END .)
+    DEF             reduce using rule 18 (stmnt -> DEF IDENTIFIER ( vals ) stmnts END .)
+    CASE            reduce using rule 18 (stmnt -> DEF IDENTIFIER ( vals ) stmnts END .)
+    END             reduce using rule 18 (stmnt -> DEF IDENTIFIER ( vals ) stmnts END .)
+    OPERATOR        reduce using rule 18 (stmnt -> DEF IDENTIFIER ( vals ) stmnts END .)
+    -               reduce using rule 18 (stmnt -> DEF IDENTIFIER ( vals ) stmnts END .)
+    $end            reduce using rule 18 (stmnt -> DEF IDENTIFIER ( vals ) stmnts END .)
+    WHEN            reduce using rule 18 (stmnt -> DEF IDENTIFIER ( vals ) stmnts END .)
+    ELSE            reduce using rule 18 (stmnt -> DEF IDENTIFIER ( vals ) stmnts END .)
+    COMMA           reduce using rule 18 (stmnt -> DEF IDENTIFIER ( vals ) stmnts END .)
+    )               reduce using rule 18 (stmnt -> DEF IDENTIFIER ( vals ) stmnts END .)
+    RIGHTBRACKET    reduce using rule 18 (stmnt -> DEF IDENTIFIER ( vals ) stmnts END .)
+
+
+state 60
+
+    (14) stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts . END
+
+    END             shift and go to state 61
+
+
+state 61
+
+    (14) stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END .
+
+    IDENTIFIER      reduce using rule 14 (stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END .)
+    PUTS            reduce using rule 14 (stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END .)
+    ARRAYEACH       reduce using rule 14 (stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END .)
+    FOR             reduce using rule 14 (stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END .)
+    RETURN          reduce using rule 14 (stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END .)
+    DEF             reduce using rule 14 (stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END .)
+    CASE            reduce using rule 14 (stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END .)
+    END             reduce using rule 14 (stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END .)
+    OPERATOR        reduce using rule 14 (stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END .)
+    -               reduce using rule 14 (stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END .)
+    $end            reduce using rule 14 (stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END .)
+    WHEN            reduce using rule 14 (stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END .)
+    ELSE            reduce using rule 14 (stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END .)
+    COMMA           reduce using rule 14 (stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END .)
+    )               reduce using rule 14 (stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END .)
+    RIGHTBRACKET    reduce using rule 14 (stmnt -> FOR IDENTIFIER IN NUMBER DOTS NUMBER stmnts END .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for IDENTIFIER in state 0 resolved as shift
+WARNING: shift/reduce conflict for PUTS in state 0 resolved as shift
+WARNING: shift/reduce conflict for ARRAYEACH in state 0 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 0 resolved as shift
+WARNING: shift/reduce conflict for RETURN in state 0 resolved as shift
+WARNING: shift/reduce conflict for DEF in state 0 resolved as shift
+WARNING: shift/reduce conflict for CASE in state 0 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFIER in state 1 resolved as shift
+WARNING: shift/reduce conflict for PUTS in state 1 resolved as shift
+WARNING: shift/reduce conflict for ARRAYEACH in state 1 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 1 resolved as shift
+WARNING: shift/reduce conflict for RETURN in state 1 resolved as shift
+WARNING: shift/reduce conflict for DEF in state 1 resolved as shift
+WARNING: shift/reduce conflict for CASE in state 1 resolved as shift
+WARNING: shift/reduce conflict for IDENTIFIER in state 10 resolved as shift
+WARNING: shift/reduce conflict for PUTS in state 10 resolved as shift
+WARNING: shift/reduce conflict for ARRAYEACH in state 10 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 10 resolved as shift
+WARNING: shift/reduce conflict for RETURN in state 10 resolved as shift
+WARNING: shift/reduce conflict for DEF in state 10 resolved as shift
+WARNING: shift/reduce conflict for CASE in state 10 resolved as shift
+WARNING: shift/reduce conflict for OPERATOR in state 14 resolved as shift
+WARNING: shift/reduce conflict for - in state 14 resolved as shift
+WARNING: shift/reduce conflict for OPERATOR in state 22 resolved as shift
+WARNING: shift/reduce conflict for - in state 22 resolved as shift
+WARNING: shift/reduce conflict for OPERATOR in state 33 resolved as shift
+WARNING: shift/reduce conflict for - in state 33 resolved as shift
+WARNING: shift/reduce conflict for OPERATOR in state 38 resolved as shift
+WARNING: shift/reduce conflict for - in state 38 resolved as shift
+WARNING: shift/reduce conflict for OPERATOR in state 39 resolved as shift
+WARNING: shift/reduce conflict for - in state 39 resolved as shift
+WARNING: reduce/reduce conflict in state 0 resolved using rule (exp -> <empty>)
+WARNING: rejected rule (stmnts -> <empty>) in state 0
+WARNING: reduce/reduce conflict in state 10 resolved using rule (exp -> <empty>)
+WARNING: rejected rule (stmnts -> <empty>) in state 10
